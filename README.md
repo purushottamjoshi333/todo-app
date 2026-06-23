@@ -16,8 +16,6 @@ A Todo REST API built with Node.js and PostgreSQL, containerized with Docker, an
 - **Health Check**: http://todo-app-alb-95738052.ap-south-1.elb.amazonaws.com/health
 - **Swagger UI**: http://todo-app-alb-95738052.ap-south-1.elb.amazonaws.com/api-docs
 
-## Project Structure
-
 ## CI/CD Pipeline
 
 Initial pipeline runs failed due to AWS credentials configuration.
