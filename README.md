@@ -1,74 +1,19 @@
-# Todo App
+# Todo App – AWS DevOps Assessment
 
-A Todo REST API built with Node.js, PostgreSQL, deployed on AWS ECS Fargate.
+A Todo REST API built with Node.js and PostgreSQL, containerized with Docker, and deployed on AWS ECS Fargate with CI/CD using GitHub Actions.
 
 ## Tech Stack
 - Node.js + Express
-- PostgreSQL
+- PostgreSQL (AWS RDS)
 - Docker
 - AWS ECS Fargate + ECR + ALB
-- Terraform
-- GitHub Actions CI/CD
+- Terraform (IaC)
+- GitHub Actions (CI/CD)
+- CloudWatch (Logging)
 
-## Local Setup
+## Live URLs
+- **Application**: http://todo-app-alb-95738052.ap-south-1.elb.amazonaws.com
+- **Health Check**: http://todo-app-alb-95738052.ap-south-1.elb.amazonaws.com/health
+- **Swagger UI**: http://todo-app-alb-95738052.ap-south-1.elb.amazonaws.com/api-docs
 
-### Prerequisites
-- Node.js, Docker, PostgreSQL installed locally
-
-### Run locally
-```bash
-npm install
-npm run dev
-```
-
-## API Endpoints
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| GET | /health | No | Health check |
-| POST | /auth/signup | No | Register user |
-| POST | /auth/login | No | Login, get JWT |
-| GET | /todos | Yes | List todos |
-| POST | /todos | Yes | Create todo |
-| PUT | /todos/:id | Yes | Update todo |
-| DELETE | /todos/:id | Yes | Delete todo |
-
-Swagger UI available at `/api-docs`
-
-## AWS Deployment
-
-### 1. Initialize Terraform
-```bash
-cd terraform
-terraform init
-terraform apply
-```
-
-### 2. Push Docker image to ECR
-```bash
-aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin <ECR_URL>
-docker build -t todo-app .
-docker tag todo-app:latest <ECR_URL>:latest
-docker push <ECR_URL>:latest
-```
-
-## Monitoring & Logging
-
-### CloudWatch Logs
-- Log group: `/ecs/todo-app`
-- View logs: AWS Console → CloudWatch → Log Groups
-
-### CPU/Memory Monitoring
-- AWS Console → ECS → Cluster → Service → Metrics tab
-- Shows CPU and Memory utilization graphs
-
-### Debugging Issues
-- Check CloudWatch logs for application errors
-- Check ECS service events for deployment failures
-- Use `aws ecs describe-services` for service status
-
-## CI/CD Pipeline
-GitHub Actions automatically:
-1. Builds Docker image on push to main
-2. Pushes image to Amazon ECR
-3. Deploys updated image to ECS Fargate
+## Project Structure
