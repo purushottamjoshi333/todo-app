@@ -17,3 +17,10 @@ A Todo REST API built with Node.js and PostgreSQL, containerized with Docker, an
 - **Swagger UI**: http://todo-app-alb-95738052.ap-south-1.elb.amazonaws.com/api-docs
 
 ## Project Structure
+
+## CI/CD Pipeline
+
+Initial pipeline runs failed due to AWS credentials configuration.
+Resolved by implementing OIDC (OpenID Connect) authentication instead
+of static access keys, which is the recommended AWS security best practice.
+This approach eliminates long-lived credentials and uses temporary tokens.
